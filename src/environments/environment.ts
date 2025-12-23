@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl:'http://PMS.com'
+    apiUrl:'https://pms-backend-sand.vercel.app/'
 };
