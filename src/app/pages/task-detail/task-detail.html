@@ -1,0 +1,152 @@
+<div class="task-detail-container" *ngIf="task$ | async as task">
+
+  <h2 class="page-title">Task Details</h2>
+
+  <!-- MAIN CARD -->
+  <div class="detail-card">
+
+    <!-- TITLE -->
+    <h3 class="task-title">{{ task.title }}</h3>
+    <p class="task-description">{{ task.description }}</p>
+
+    <hr />
+
+    <!-- MILESTONE DETAILS -->
+    <h4 class="section-title">Milestone Information</h4>
+
+    <div class="info-row"><strong>Name:</strong> {{ task.milestoneId?.name }}</div>
+    <div class="info-row"><strong>Description:</strong> {{ task.milestoneId?.description }}</div>
+    <div class="info-row"><strong>Due Date:</strong> {{ task.milestoneId?.dueDate | date }}</div>
+    <div class="info-row">
+      <strong>Status:</strong>
+      <span class="status-tag" [ngClass]="task.milestoneId?.status">
+        {{ task.milestoneId?.status }}
+      </span>
+    </div>
+
+    <hr />
+
+    <!-- TASK STATUS -->
+    <h4 class="section-title">Task Status</h4>
+    <span class="status-tag" [ngClass]="task.status">
+      {{ task.status }}
+    </span>
+
+    <hr />
+
+    <!-- PERSONS -->
+    <h4 class="section-title">People</h4>
+
+    <div class="button-row" >
+      <button class="action-btn" [routerLink]="['/users', task?.assignedBy]" >View Created By</button>
+      <button class="action-btn" [routerLink]="['/users',task?.assignedTo]">View Assigned To</button>
+       <button class="action-btn" *ngIf="(Role | async)==='Team Leader'" (click)="setUser()">Assign</button>
+       <button class="action-btn" *ngIf="(Role | async)==='Employee'" (click)="setStatus()">Update Status</button>
+    </div>
+
+    <hr />
+
+    <!-- COMMENTS SECTION -->
+    <div class="comments-header">
+      <h4 class="section-title">Comments</h4>
+
+      <!-- ADD COMMENT BUTTON -->
+      <button class="add-comment-btn" (click)="setComment()">
+        + Add Comment
+      </button>
+    </div>
+
+    <!-- COMMENT LIST -->
+    <div  class="comments-box" *ngIf="comments$ | async as comments">
+      <div class="comment" *ngFor="let c of comments">
+       <div>
+         <p>{{ c.text }}</p>
+        <small>— {{ c.authorId?.name || 'User' }}  ({{c.authorId?.role}})</small>
+       </div>
+       <button class="delt-btn" (click)="deleteComment(c._id)">Delete</button>
+      </div>
+    </div>
+
+    <ng-template #noComment>
+      <p class="no-comment">No comments yet.</p>
+    </ng-template>
+
+  
+
+  </div>
+
+</div>
+
+<!-- ADD COMMENT FORM -->
+<div class="comment-overlay" id="commentBox" *ngIf="comm">
+  <div class="comment-container">
+    <h2>Add Comment</h2>
+
+    <form [formGroup]="commForm">
+      <label for="comment">Comment</label>
+      <textarea id="comment" placeholder="write comment" formControlName="text"  required></textarea>
+
+      <div class="btn-group">
+        <button type="button" class="submit-btn"(click)="addComment()" >Add Comment</button>
+        <button type="button" (click)="unSet()" class="close-btn">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- update status  -->
+<div class="comment-overlay" id="commentBox" *ngIf="status">
+  <div class="comment-container">
+    <h2>Update Task Status</h2>
+
+    <form [formGroup]="statusForm">
+      <label for="comment"> Task Status</label>
+        <div  class="user">
+          <select  formControlName="status">
+
+            <option value="">select</option>
+            <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+          </select>
+        </div>
+
+      <div class="btn-group">
+        <button type="button" class="submit-btn"(click)="updateStatus()" >Update</button>
+        <button type="button" (click)="unSetStatus()" class="close-btn">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- Assign Task -->
+
+<div class="comment-overlay" id="commentBox" *ngIf="user">
+  <div class="comment-container">
+    <h2>Assign Task To Employee</h2>
+
+    <form [formGroup]="userForm">
+      <label for="comment"> Assign Task</label>
+        <div  class="user">
+          <select  formControlName="assignedTo">
+
+            <option value="">select</option>
+            <option [value]="u._id" *ngFor="let u of (selectedUsers$ | async)">{{u.name}} </option>
+  
+          </select>
+        </div>
+
+      <div class="btn-group">
+        <button type="button" class="submit-btn"(click)="assignTask()" >Assign</button>
+        <button type="button" (click)="unSetUser()" class="close-btn">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card">
+
+    <h2 style="color: black;">Verify OTP</h2>
+    <p>Enter the 4-digit OTP sent to your email.</p>
+
+    <form (ngSubmit)="verifyOtp()">
+      
+      <label style="color: black;">Enter OTP</label>
+      <input 
+        type="text" 
+        maxlength="6"
+        placeholder="Enter OTP"
+        [(ngModel)]="otp"
+        name="otp"
+        required
+      />
+      
+
+      <button type="submit">Verify</button>
+
+      <!-- <p class="resend">
+        Didn't receive OTP?
+        <span (click)="resendOtp()">Resend</span>
+      </p> -->
+
+    </form>
+
+  </div>
+</div>
+
+
+

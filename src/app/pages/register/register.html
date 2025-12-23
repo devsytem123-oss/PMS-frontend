@@ -1,0 +1,131 @@
+<div class="bg-shapes">
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<div class="register-container">
+  <div class="register-card">
+    <div class="logo-section">
+      <div class="logo-icon">📊</div>
+    </div>
+
+    <h2>Create Account</h2>
+    <p class="subtitle">Join ProjectHub and start managing your projects efficiently</p>
+
+    <div class="success-message">
+      ✓ Registration successful! Redirecting to login...
+    </div>
+
+    <form  [formGroup]="registerForm">
+      <!-- Name Field -->
+      <div class="form-group" 
+          >
+        <label for="name">Full Name</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input 
+            type="text" 
+            id="name" 
+            formControlName="name"
+            placeholder="Enter your full name"
+          >
+        </div>
+        <div class="error-message" >
+        
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group" 
+          >
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📧</span>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            placeholder="Enter your email"
+          >
+        </div>
+        <div class="error-message" >
+          
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group" 
+         >
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            placeholder="Create a strong password"
+          >
+        </div>
+        <div class="password-strength">
+          <div class="password-strength-bar" ></div>
+        </div>
+        <div class="password-strength-text" 
+            >
+          
+        </div>
+        <div class="error-message" >
+      
+        </div>
+      </div>
+
+      <!-- Role Field -->
+      <div class="form-group" 
+          >
+        <label for="role">Role</label>
+        <div class="input-wrapper">
+          <span class="input-icon">💼</span>
+          <select id="role" formControlName="role">
+            <option value="">Select your role</option>
+            <option >
+              Admin
+            </option>
+            <option >
+              Project Manager 
+            </option>
+            <option >
+              Team Leader
+            </option>
+            <option >
+              Employee
+            </option>
+            <option >
+              Client
+            </option>
+           
+          </select>
+        </div>
+        <div class="error-message" >
+         
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="button" 
+        class="btn-submit" 
+        (click)="registerUser()"
+        >
+        <span class="btn-text" >Create Account</span>
+        <div class="spinner"></div>
+      </button>
+    </form>
+
+    <div class="divider">
+      <span></span>
+    </div>
+    <p class="login-link">
+      Already have an account? <a routerLink="/login">Sign in here</a>
+    </p>
+  </div>
+</div>

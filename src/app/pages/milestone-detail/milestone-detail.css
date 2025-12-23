@@ -1,0 +1,362 @@
+/* ============================
+   PAGE WRAPPER
+=============================== */
+.milestone-container {
+  max-width: 880px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   PAGE TITLE
+=============================== */
+.title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 35px;
+  letter-spacing: -1px;
+  color: #1f1f1f;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  margin: 10px auto 0;
+  border-radius: 50px;
+}
+
+/* ============================
+   PREMIUM CARD (NEUMORPHIC + GLOW)
+=============================== */
+.milestone-card {
+  background: #f1f4f9;
+  padding: 35px;
+  border-radius: 24px;
+
+  box-shadow: 
+     9px 9px 20px rgba(0,0,0,0.12),
+    -9px -9px 20px rgba(255,255,255,0.9);
+
+  transition: 0.4s ease;
+}
+
+.milestone-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 
+     14px 14px 30px rgba(0,0,0,0.15),
+    -14px -14px 30px rgba(255,255,255,1);
+}
+
+/* ============================
+   TEXT STYLING
+=============================== */
+.milestone-card h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #222;
+}
+
+.milestone-card p {
+  font-size: 17px;
+  margin-bottom: 14px;
+  color: #4a4a4a;
+}
+
+.milestone-card strong {
+  color: #6a11cb;
+  font-weight: 700;
+}
+
+/* ============================
+   STATUS TAG (GORGEOUS STYLE)
+=============================== */
+.status {
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  display: inline-block;
+}
+
+.status.pending {
+  background: linear-gradient(90deg, #ffb347, #ffcc33);
+  color: #fff;
+}
+
+.status.completed {
+  background: linear-gradient(90deg, #11998e, #38ef7d);
+  color: #fff;
+}
+
+.status.delayed {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  color: #fff;
+}
+
+/* ============================
+   MODERN BUTTONS (Glass + Glow)
+=============================== */
+button {
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  margin-top: 18px;
+
+  transition: 0.25s ease;
+  color: white;
+
+  backdrop-filter: blur(6px);
+}
+
+/* ASSIGNED USER BUTTON */
+.assigned-btn {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  box-shadow: 0 5px 18px rgba(64, 201, 172, 0.3);
+}
+
+.assigned-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(64, 201, 172, 0.45);
+}
+
+/* CREATE TASK BUTTON */
+.create-task-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  box-shadow: 0 5px 18px rgba(106, 17, 203, 0.3);
+}
+
+.create-task-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(106, 17, 203, 0.45);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+/* Container */
+.task-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Page Title */
+.title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  color: #1e1e1e;
+  margin-bottom: 30px;
+}
+
+/* Card Style */
+.task-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+
+  box-shadow: 
+     8px 8px 20px rgba(0,0,0,0.12),
+    -8px -8px 20px rgba(255,255,255,0.8);
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: -5px;
+}
+
+/* Inputs + Textarea */
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  background: #f1f4f9;
+
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1),
+              inset -4px -4px 8px rgba(255,255,255,0.9);
+
+  transition: 0.2s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #6a11cb;
+}
+
+/* Create Button */
+.create-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+  margin-top: 10px;
+}
+
+.create-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(106,17,203,0.4);
+}
+
+.create-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: #ddd;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.cancel-btn:hover {
+  background: #c8c8c8;
+  transform: translateY(-2px);
+}
+
+/* MAIN CONTAINER */
+.task-con {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+}
+
+/* PAGE TITLE */
+.page-ti {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #6C63FF;
+  text-shadow: 0 0 10px rgba(108, 99, 255, 0.6);
+}
+
+/* TASK CARD */
+.task-cd {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(108, 99, 255, 0.25);
+  transition: 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CARD HOVER */
+.task-cd:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(0, 210, 255, 0.45);
+}
+
+/* TOP GLOW LINE */
+.task-cd::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 210, 255, 0.25),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.task-cd:hover::before {
+  opacity: 1;
+}
+
+/* TASK TITLE */
+.task-ti {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+/* DESCRIPTION */
+.task-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cdd3ff;
+  margin-bottom: 14px;
+}
+
+/* STATUS BADGE */
+.task-stat {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* STATUS COLORS */
+.task-stat.pending {
+  color: #FFC107;
+  background: rgba(255, 193, 7, 0.18);
+  border: 1px solid rgba(255, 193, 7, 0.45);
+}
+
+.task-stat.completed {
+  color: #00E676;
+  background: rgba(0, 230, 118, 0.18);
+  border: 1px solid rgba(0, 230, 118, 0.45);
+}
+
+.task-stat.in-progress {
+  color: #00D2FF;
+  background: rgba(0, 210, 255, 0.18);
+  border: 1px solid rgba(0, 210, 255, 0.45);
+}

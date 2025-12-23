@@ -1,0 +1,174 @@
+<div class="dashboard-wrapper">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1>Dashboard</h1>
+        <p class="welcome-text">
+          Welcome back, <span class="user-name">{{ (currentUser | async)?.userId?.name || 'User' }}</span
+          >! 👋
+        </p>
+      </div>
+      <div class="header-right">
+        <button class="btn-profile" (click)="navigateToPage('/profile')">
+          <span class="profile-icon">👤</span>
+          Profile
+        </button>
+        <button class="btn-logout" (click)="logout()">
+          <span class="logout-icon">🚪</span>
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Overview -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-content">
+          <h3>{{ totalProjects }}</h3>
+          <p>Total Projects</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-content">
+          <h3>{{ activeTasks }}</h3>
+          <p>Active Tasks</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">✓</div>
+        <div class="stat-content">
+          <h3>{{ completedTasks }}</h3>
+          <p>Completed Tasks</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-content">
+          <h3>{{ upcomingMilestones }}</h3>
+          <p>Upcoming Milestones</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Dashboard Cards -->
+  <section class="dashboard-cards-section">
+    <h2 class="section-title">Quick Access</h2>
+    <div class="dashboard-cards-grid">
+      @if((Role | async)=="Admin" || (Role | async)=="Project Manager"){
+        <div class="dashboard-card" [class]="Project.color" (click)="navigateToPage(Project.route)">
+        <div class="card-icon">{{ Project.icon }}</div>
+        <div class="card-content">
+          <h3>{{ Project.title }}</h3>
+          <p>{{ Project.description }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-action">{{ Project.stats }}</span>
+          <span class="arrow-icon">→</span>
+        </div>
+      </div>
+      }
+
+      <div class="dashboard-card" [class]="Mile.color" (click)="navigateToPage(Mile.route)">
+        <div class="card-icon">{{ Mile.icon }}</div>
+        <div class="card-content">
+          <h3>{{ Mile.title }}</h3>
+          <p>{{ Mile.description }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-action">{{ Mile.stats }}</span>
+          <span class="arrow-icon">→</span>
+        </div>
+      </div>
+      <div class="dashboard-card" [class]="Task.color" (click)="navigateToPage(Task.route)">
+        <div class="card-icon">{{ Task.icon }}</div>
+        <div class="card-content">
+          <h3>{{ Task.title }}</h3>
+          <p>{{ Task.description }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-action">{{ Task.stats }}</span>
+          <span class="arrow-icon">→</span>
+        </div>
+      </div>
+      <div *ngIf="(Role | async)=='Admin' || (Role | async)=='Client' "  class="dashboard-card" [class]="Progress.color" (click)="navigateToPage(Progress.route)">
+        <div class="card-icon"><img src="progress.png" alt="" style="width: 50px;"></div>
+        <div class="card-content">
+          <h3>{{ Progress.title }}</h3>
+          <p>{{ Progress.description }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-action">{{ Progress.stats }}</span>
+          <span class="arrow-icon">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Activity -->
+  <section class="activity-section">
+    <div class="activity-grid">
+      <!-- Recent Projects -->
+      <div class="activity-card" *ngIf="(Role | async)=='Admin' ">
+        <div class="activity-header">
+          <h3>Recent Projects</h3>
+          <button class="view-all-btn" (click)="navigateToPage('/projects')">View All</button>
+        </div>
+        <div class="activity-content" *ngIf="!loading">
+          <div *ngIf="recentProjects.length === 0" class="empty-state">
+            <p>No projects yet. Create your first project!</p>
+            <button class="btn-create" (click)="navigateToPage('/projects')">Create Project</button>
+          </div>
+          <div *ngFor="let project of recentProjects" class="activity-item">
+            <div class="item-icon">📁</div>
+            <div class="item-content">
+              <h4>{{ project.name }}</h4>
+              <p>{{ project.description }}</p>
+            </div>
+            <div class="item-badge">{{ project.status || 'Active' }}</div>
+          </div>
+        </div>
+        <div class="loading-state" *ngIf="loading">
+          <div class="spinner"></div>
+          <p>Loading projects...</p>
+        </div>
+      </div>
+
+      <!-- Recent Tasks -->
+      <div class="activity-card">
+        <div class="activity-header">
+          <h3>Recent Tasks</h3>
+          <button class="view-all-btn" (click)="navigateToPage('/tasks')">View All</button>
+        </div>
+        <div class="activity-content" *ngIf="!loading">
+          <div *ngIf="recentTasks.length === 0" class="empty-state">
+            <p>No tasks yet. Create your first task!</p>
+            <button class="btn-create" (click)="navigateToPage('/tasks')">Create Task</button>
+          </div>
+          <div *ngFor="let task of recentTasks" class="activity-item">
+            <div class="item-checkbox">
+              <input type="checkbox" [checked]="task.status === 'completed'" />
+            </div>
+            <div class="item-content">
+              <h4>{{ task.title }}</h4>
+              <p>{{ task.dueDate | date : 'MMM d, y' }}</p>
+            </div>
+            <div class="item-badge" [class]="task.status">{{ task.status || 'Pending' }}</div>
+          </div>
+        </div>
+        <div class="loading-state" *ngIf="loading">
+          <div class="spinner"></div>
+          <p>Loading tasks...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

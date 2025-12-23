@@ -1,0 +1,49 @@
+<h2 style="color: green;">User Management</h2>
+
+<!-- ---------------- ALL USERS ---------------- -->
+<h3>All Users</h3>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>Skills</th>
+    <th>Actions</th>
+  </tr>
+
+  <tr *ngFor="let u of users$ | async">
+    <td>{{ u.name }}</td>
+    <td>{{ u.email }}</td>
+    <td>{{ u.role }}</td>
+    <td>{{ u.profile?.phone }}</td>
+    <td>{{ u.profile?.address }}</td>
+    <td>{{ u.profile?.skills }}</td>
+    <td>
+      <button class="view" [routerLink]="['/users', u._id]">View</button>
+      <button class="edit" *ngIf="u._id" (click)="setEditUser(u._id)">Edit</button>
+      <button class="delete" *ngIf="u._id" (click)="deleteUser(u._id!)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<br /><br />
+
+
+<!-- ---------------- EDIT USER FORM ---------------- -->
+<div *ngIf="editMode " class="edit-container">
+  
+
+  <form [formGroup]="editForm">
+    <h3 class="edit-h">Edit User</h3>
+    <input placeholder="Name"  formControlName="name" /><br />
+    <input placeholder="Email" formControlName="email" /><br />
+    <input placeholder="Role"  formControlName="role" /><br />
+
+   
+    <button class="upd" type="button" (click)="updateForm()">Update</button>
+    <button class="can" type="button" (click)="editMode=false">Cancel</button>
+  </form>
+</div>

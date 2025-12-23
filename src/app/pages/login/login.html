@@ -1,0 +1,74 @@
+<div class="bg-shapes">
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo-section">
+      <div class="logo-icon">📊</div>
+    </div>
+
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Sign in to continue to ProjectHub</p>
+
+    <form [formGroup]="loginForm">
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input
+            type="text"
+            id="username"
+            formControlName="email"
+            placeholder="Enter your username"
+            autocomplete="username"
+          />
+        </div>
+        <div class="error-message"></div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword()">
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+        <div class="error-message"></div>
+      </div>
+
+      <!-- Remember Me & Forgot Password -->
+      <div class="form-options">
+        <label style="color: mediumseagreen">
+          <input type="checkbox" formControlName="rememberMe" />
+          Remember Me
+        </label>
+        <button type="button" class="forgot-password" routerLink="/forget-password">
+          Forgot password?
+        </button>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="button" class="btn-submit" (click)="login()">
+        <span class="btn-text">Sign In</span>
+        <div class="spinner"></div>
+      </button>
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="register-link">Don't have an account? <a routerLink="/register">Create one now</a></p>
+  </div>
+</div>

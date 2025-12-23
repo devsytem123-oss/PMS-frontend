@@ -1,0 +1,76 @@
+<div class="task-container">
+
+  <h2 class="title">Task Management</h2>
+
+  <!-- FILTER SECTION -->
+  <div class="filters">
+
+    <!-- Project Filter -->
+    <select (change)="filterByProject($event)" class="filter-box">
+      <option value="">Filter by Project</option>
+      <option *ngFor="let p of projects | async" [value]="p._id">
+        {{ p.name }}
+      </option>
+    </select>
+
+    <!-- Milestone Filter -->
+    <select (change)="filterByMilestone($event)" class="filter-box">
+      <option value="">Filter by Milestone</option>
+      <option *ngFor="let m of milestones | async" [value]="m._id">
+        {{ m.name }}
+      </option>
+    </select>
+
+  </div>
+
+  <!-- TASK TABLE -->
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th style="width: 160px;">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+     @if ((Role | async)==='Employee'){
+        <tr *ngFor="let t of taskByUserId | async">
+        <td>{{ t.title }}</td>
+        <td>{{ t.description }}</td>
+
+        <td>
+          <span class="status" [ngClass]="t.status">
+            {{ t.status }}
+          </span>
+        </td>
+
+        <td class="actions">
+          <button class="view-btn" [routerLink]="['/tasks',t._id]">View</button>
+          <button class="delete-btn" (click)="deleteTask(t._id)" *ngIf="(Role | async)==='Project Manager'">Delete</button>
+        </td>
+      </tr>
+     }
+
+     @else {
+  <tr *ngFor="let t of tasks | async">
+        <td>{{ t.title }}</td>
+        <td>{{ t.description }}</td>
+
+        <td>
+          <span class="status" [ngClass]="t.status">
+            {{ t.status }}
+          </span>
+        </td>
+
+        <td class="actions">
+          <button class="view-btn" [routerLink]="['/tasks',t._id]">View</button>
+          <button class="delete-btn" (click)="deleteTask(t._id)" *ngIf="(Role | async)==='Project Manager'">Delete</button>
+        </td>
+      </tr>
+     }
+    </tbody>
+  </table>
+
+</div>

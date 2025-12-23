@@ -1,0 +1,181 @@
+<!-- Background Shapes -->
+<div class="bg-shapes">
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<!-- Header Navigation -->
+<header class="header">
+  <div class="header-content">
+    <div class="logo">
+      <span class="logo-icon">📊</span>
+      <span class="logo-text">ProjectHub</span>
+    </div>
+     <button class="menu-toggle" (click)="toggleMenu()">
+  ☰
+</button>
+    <nav class="nav-menu" [class.open]="isMenuOpen"  *ngIf="isLoggedIn" >
+     
+        <a routerLink="/dashboard" class="nav-link" (click)="closeMenu()">Dashboard</a>
+        <a routerLink="/users" *ngIf="(role$ | async)==='Admin'" class="nav-link" (click)="closeMenu()">Employee List</a>
+        <a *ngIf="(role$ | async) === 'Admin'" routerLink="/project" class="nav-link" (click)="closeMenu()"> Create Project </a>
+     
+    </nav>
+
+    <!-- Actions for Not Logged In -->
+    <div class="header-actions" *ngIf="!isLoggedIn">
+      <button class="btn-nav" routerLink="/login">Login</button>
+      <button class="btn-nav btn-nav-primary" routerLink="/register">Sign Up</button>
+    </div>
+
+    <!-- Profile Menu for Logged In Users -->
+    <div class="profile-wrapper" *ngIf="isLoggedIn" >
+      <img
+        src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        class="profile-img"
+        alt="Profile"
+        (click)="toggleProfileMenu()"
+      />
+
+      <div class="profile-menu" *ngIf="isProfileMenuOpen">
+        <a routerLink="/profile">👤 Profile</a>
+        <a (click)="logout()">🚪 Logout</a>
+      </div>
+    </div>
+  </div>
+ 
+</header>
+
+<!-- Main Home Content -->
+<div class="home-wrapper">
+  <div class="hero-section">
+    <h1>Project Management System</h1>
+   
+    <p>
+      Streamline your projects, tasks, teams, and workflow with intelligent automation and real-time
+      collaboration.
+    </p>
+  </div>
+
+  <!-- Landing Page Buttons Hidden When Logged In -->
+  <div class="auth-buttons" *ngIf="!isLoggedIn">
+    <button class="btn primary" routerLink="/register">
+      <span>Get Started</span>
+    </button>
+    <button class="btn secondary" routerLink="/login">
+      <span>Sign In</span>
+    </button>
+  </div>
+
+  <div class="dashboard-section">
+    <h2>Your Command Center</h2>
+    <p>Access your personalized dashboard and take control of your projects</p>
+
+    <div class="dash-card" routerLink="/dashboard" *ngIf="isLoggedIn">
+      <h3>🚀 Launch Dashboard</h3>
+      <p>
+        View projects, track tasks, manage milestones, and monitor progress in real-time with
+        powerful analytics and insights.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h4>Analytics</h4>
+        <p>Deep insights into project performance and team productivity</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h4>Real-time Sync</h4>
+        <p>Instant updates across all devices and team members</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h4>Collaboration</h4>
+        <p>Seamless teamwork with integrated communication tools</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <!-- Logo & About -->
+    <div class="footer-section">
+      <div class="footer-logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">ProjectHub</span>
+      </div>
+      <p class="footer-description">
+        Empowering teams to achieve more through intelligent project management and seamless
+        collaboration.
+      </p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Twitter">T</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">L</a>
+        <a href="#" class="social-link" aria-label="GitHub">G</a>
+      </div>
+    </div>
+
+    <!-- Product Links -->
+    <div class="footer-section">
+      <h3 class="footer-title">Product</h3>
+      <ul class="footer-links">
+        <li><a routerLink="/features">Features</a></li>
+        <li><a routerLink="/dashboard">Dashboard</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">API</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div class="footer-section">
+      <h3 class="footer-title">Company</h3>
+      <ul class="footer-links">
+        <li><a routerLink="/about">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div class="footer-section">
+      <h3 class="footer-title">Resources</h3>
+      <ul class="footer-links">
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Tutorials</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-section">
+      <h3 class="footer-title">Legal</h3>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 ProjectHub. All rights reserved. Built with ❤️ for productive teams.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>

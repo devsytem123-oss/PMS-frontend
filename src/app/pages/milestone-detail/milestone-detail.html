@@ -1,0 +1,78 @@
+<div class="milestone-container" *ngIf="milestone$ | async as milestone">
+  <h2 class="title">Milestone Details</h2>
+
+  <!-- MILESTONE CARD -->
+  <div class="milestone-card">
+    <h3>{{ milestone.name }}</h3>
+
+    <p><strong>Description:</strong> {{ milestone.description }}</p>
+
+    <p>
+      <strong>Project:</strong>
+      {{ milestone.projectId?.name }}
+    </p>
+
+    <p>
+      <strong>Due Date:</strong>
+      {{ milestone.dueDate | date : 'longDate' }}
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <span class="status" [ngClass]="milestone.status">
+        {{ milestone.status | uppercase }}
+      </span>
+    </p>
+
+    <!-- ASSIGNED USER BUTTON -->
+    <button class="assigned-btn" [routerLink]="['/users', milestone.projectId?.assignedTo]">
+      View Assigned User
+    </button>
+
+    <!-- CREATE TASK BUTTON -->
+    <button
+      class="create-task-btn"
+      (click)="setTask()"
+      *ngIf="(Role | async) === 'Project Manager'"
+    >
+      + Create Task
+    </button>
+  </div>
+</div>
+
+<!-- Show all tasks -->
+<div class="task-con" *ngIf="Tasks$ | async as tasks">
+  <h2 class="page-ti">Tasks</h2>
+
+  <div class="task-cd" *ngFor="let t of tasks">
+    <h3 class="task-ti">{{ t.title }}</h3>
+    <p class="task-desc">
+      {{ t.description }}
+    </p>
+    <span class="task-stat pending">{{ t.status }} </span>
+  </div>
+</div>
+
+<div class="task-container" *ngIf="task" #taskFormSection>
+  <h2 class="title" style="color: green">Create New Task</h2>
+
+  <form [formGroup]="taskForm" class="task-card">
+    <!-- Task Title -->
+    <label>Task Title</label>
+    <input type="text" formControlName="title" placeholder="Enter task title" required />
+
+    <!-- Description -->
+    <label>Description</label>
+    <textarea
+      formControlName="description"
+      placeholder="Enter task description"
+      rows="4"
+      required
+    ></textarea>
+
+    <!-- Buttons -->
+    <button type="button" class="create-btn" (click)="createTask()">+ Create Task</button>
+
+    <button type="button" class="cancel-btn" (click)="unSet()">Cancel</button>
+  </form>
+</div>

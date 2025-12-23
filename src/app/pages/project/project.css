@@ -1,0 +1,250 @@
+/* ==============================
+   MODAL OVERLAY
+   ============================== */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 8, 15, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+  z-index: 999;
+}
+
+/* SHOW MODAL */
+.modal.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ==============================
+   MODAL BOX
+   ============================== */
+
+.modal-content {
+  background: rgba(20, 20, 26, 0.75);
+  padding: 30px;
+  width: 420px;
+  border-radius: 20px;
+
+  border: 2px solid rgba(0, 255, 255, 0.35);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.35),
+              inset 0 0 15px rgba(0, 255, 255, 0.15);
+
+  backdrop-filter: blur(20px);
+  color: #e8f5f8;
+  text-align: center;
+
+  animation: popup 0.4s ease;
+}
+
+/* POPUP ANIMATION */
+@keyframes popup {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* TITLE */
+.modal-content h3 {
+  font-size: 24px;
+  color: #00eaff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.modal-content p {
+  font-size: 15px;
+  color: #cfeeff;
+  margin-bottom: 25px;
+}
+
+/* ==============================
+   BUTTONS
+   ============================== */
+
+.modal-content button {
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  margin: 0 8px;
+  transition: 0.3s;
+}
+
+/* DELETE BUTTON */
+.modal-content button:first-child {
+  background: #ff3a3a;
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.45);
+}
+
+.modal-content button:first-child:hover {
+  background: #ff1d1d;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
+/* CANCEL BUTTON */
+.modal-content button:last-child {
+  background: rgba(0, 255, 255, 0.15);
+  color: #00eaff;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content button:last-child:hover {
+  background: rgba(0, 255, 255, 0.35);
+  transform: translateY(-2px);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+
+
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.container h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  background: linear-gradient(45deg, #007bff, #6a5acd);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ---------------- PROJECT CARD ---------------- */
+.project-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 25px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.35s ease;
+  box-shadow: 
+      0 8px 25px rgba(0,0,0,0.1),
+      inset 0 0 0 0 rgba(255,255,255,0.4);
+}
+
+/* Gradient border effect */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #6a5acd, #00c6ff, #6a5acd);
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.7;
+}
+
+/* Hover = Lift + Glow */
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+      0 12px 35px rgba(0,0,0,0.15),
+      0 0 20px rgba(0, 150, 255, 0.3);
+}
+
+/* Title + Description */
+.project-card p {
+  margin: 10px 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.project-card strong {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ---------------- BUTTON GROUP ---------------- */
+.project-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Base button style */
+.project-actions button {
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.25s ease;
+  transform: translateZ(0);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Ripple Effect */
+.project-actions button::after {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,0.3);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  transition: 0.5s;
+}
+
+.project-actions button:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+}
+
+/* View */
+.btn-view {
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+}
+.btn-view:hover {
+  background: linear-gradient(45deg, #0064d2, #00a6dd);
+}
+
+/* Edit */
+.btn-edit {
+  background: linear-gradient(45deg, #ffb300, #ff8c00);
+}
+.btn-edit:hover {
+  background: linear-gradient(45deg, #e49e00, #e07a00);
+}
+
+/* Delete */
+.btn-delete {
+  background: linear-gradient(45deg, #ff416c, #e63946);
+}
+.btn-delete:hover {
+  background: linear-gradient(45deg, #d81e52, #c71c2c);
+}

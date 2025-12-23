@@ -1,0 +1,148 @@
+/* ---------------- PAGE BACKGROUND ---------------- */
+body {
+  background: linear-gradient(135deg, #ff6b6b, #5f27cd, #1dd1a1);
+  background-size: 300% 300%;
+  animation: bgMove 12s infinite alternate ease-in-out;
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Background Animation */
+@keyframes bgMove {
+  0% { background-position: left top; }
+  50% { background-position: right center; }
+  100% { background-position: left bottom; }
+}
+
+/* ---------------- FORM CARD ---------------- */
+.center-box {
+  width: 450px;
+  margin: 70px auto;
+  padding: 35px;
+  border-radius: 20px;
+  position: relative;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  animation: floatCard 3s infinite ease-in-out;
+}
+
+/* Floating Animation */
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Animated Border Effect */
+.center-box::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  padding: 2px;
+  background: linear-gradient(135deg, #ff9ff3, #feca57, #54a0ff, #1dd1a1);
+  background-size: 400%;
+  animation: borderMove 6s linear infinite;
+  z-index: -1;
+}
+
+@keyframes borderMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 400% 0; }
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------------- FORM FIELDS ---------------- */
+label {
+  margin-top: 15px;
+  font-weight: 600;
+  display: block;
+  color: #fff;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+/* Glow Effect on Focus */
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 10px #ff9ff3, 0 0 15px #54a0ff;
+  transform: scale(1.03);
+  background: #fff;
+}
+
+/* Textarea */
+textarea {
+  height: 90px;
+  resize: none;
+}
+
+/* ---------------- SUBMIT BUTTON ---------------- */
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 25px;
+  font-size: 17px;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff6b6b, #48dbfb, #1dd1a1);
+  background-size: 300%;
+  animation: btnMove 4s infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient Button Animation */
+@keyframes btnMove {
+  0% { background-position: left; }
+  100% { background-position: right; }
+}
+
+/* Ripple Effect */
+button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 50%);
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+button:hover::after {
+  transform: scale(4);
+  opacity: 1;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+}
+
+button:active {
+  transform: scale(0.97);
+}

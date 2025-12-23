@@ -1,0 +1,46 @@
+<div class="container">
+
+  <h2>Milestone Management</h2>
+
+  <!-- FILTER SECTION -->
+  <div class="filter-box">
+    <label>Filter by Project:</label>
+    <select [(ngModel)]="selectedProject" (change)="filterMilestones()">
+      <option value="">All Projects</option>
+      <option *ngFor="let p of projectList$ | async" [value]="p">
+        {{ p }}
+      </option>
+    </select>
+  </div>
+
+  <!-- MILESTONE TABLE -->
+  <table class="milestone-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let m of (filteredMilestones$) ?? (milestones) | async">
+        <td>{{ m.name }}</td>
+        <td>{{ m.description }}</td>
+        <td>{{ m.dueDate | date:'mediumDate' }}</td>
+        <td>
+          <span class="status" [ngClass]="m?.status?.toLowerCase() ">
+            {{ m.status }}
+          </span>
+        </td>
+        <td class="btn">
+          <Button [routerLink]="['/milestones',m._id]"  class="view">View</Button>
+          <Button (click)="deleteMile(m._id)" *ngIf="(Role | async)==='Project Manager'" class="del">Delete</Button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

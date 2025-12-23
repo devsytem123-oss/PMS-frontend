@@ -1,0 +1,76 @@
+<div class="container" *ngIf="project$ | async as project">
+
+  <!-- PROJECT HEADER -->
+  <h1 style="color: green; text-align: center;">Project Details</h1>
+
+  <!-- BASIC DETAILS -->
+  <div class="section">
+    <h2>Basic Information</h2>
+    <p><strong>Name:</strong> {{ project.projectDetails.name }}</p>
+    <p><strong>Description:</strong> {{ project.projectDetails.description }}</p>
+    <p><strong>Status:</strong> {{ project.projectDetails.status }}</p>
+    <p><strong>Start Date:</strong> {{project.projectDetails.startDate | date }}</p>
+    <p><strong>End Date:</strong> {{ project.projectDetails.endDate | date }}</p>
+  </div>
+
+  <!-- CREATED BY -->
+ 
+    <button class="c" [routerLink]="['/users',project.projectDetails?.createdBy?._id]">Created By</button>
+ 
+
+  <!-- ASSIGNED TO -->
+  
+   
+    <button class="a" [routerLink]="['/users',project.projectDetails?.assignedTo._id]" >Assigned To</button>
+  
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <h2>Task Summary</h2>
+    <p><strong>Total Tasks:</strong> {{ project.summary?.totalTasks }}</p>
+    <p><strong>Completed:</strong> {{ project.summary?.completedTasks }}</p>
+    <p><strong>In Progress:</strong> {{ project.summary?.inProgressTasks }}</p>
+    <p><strong>Pending:</strong> {{ project.summary?.pendingTasks }}</p>
+  </div>
+
+  <!-- MILESTONES -->
+  <div class="section">
+    <h2>Milestones</h2>
+
+    <div *ngFor="let m of project.milestones" class="box">
+      <p><strong>Name:</strong> {{ m.name }}</p>
+      <p><strong>Description:</strong> {{ m.description }}</p>
+      <p><strong>Due Date:</strong> {{ m.dueDate | date }}</p>
+      <p><strong>Status:</strong> {{ m.status }}</p>
+    </div>
+  </div>
+
+  <!-- TASKS -->
+  <div class="section">
+    <h2>Tasks</h2>
+
+    <div *ngFor="let t of project.tasks" class="box">
+      <p><strong>Title:</strong> {{ t.title }}</p>
+      <p><strong>Description:</strong> {{ t.description }}</p>
+      <p><strong>Status:</strong> {{ t.status }}</p>
+
+    
+        <button class="ab" [routerLink]="['/users',t?.assignedTo._id]" >Assigned To</button>
+     
+       <button class="cd" [routerLink]="['/users',t?.assignedBy]">Created By</button>
+     
+    </div>
+  </div>
+
+  <!-- PROJECT COMMENTS -->
+  <div class="section">
+    <h2>Project Comments</h2>
+
+    <div *ngFor="let c of project.comments" class="box">
+      <p><strong>Task:</strong> {{ c.taskId.title }}</p>
+      <p><strong>Author:</strong> {{ c.authorId.name }} ({{ c.authorId.role }})</p>
+      <p><strong>Comment:</strong> {{ c.text }}</p>
+    </div>
+  </div>
+
+</div>

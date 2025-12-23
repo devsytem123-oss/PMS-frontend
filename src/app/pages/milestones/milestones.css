@@ -1,0 +1,398 @@
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 25px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.container h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  border-radius: 2px;
+}
+
+/* Filter Section */
+.filter-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.filter-box:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.filter-box label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.filter-box select {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2rem;
+  padding-right: 3rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-box select:focus {
+  border-color: #ffd700;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.filter-box select option {
+  padding: 1rem;
+  background: #fff;
+  color: #333;
+}
+
+/* Table Styles */
+.milestone-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.milestone-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.milestone-table thead tr th {
+  padding: 1.5rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.milestone-table thead tr th:first-child {
+  border-top-left-radius: 15px;
+}
+
+.milestone-table thead tr th:last-child {
+  border-top-right-radius: 15px;
+}
+
+.milestone-table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.milestone-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  transform: scale(1.01);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.milestone-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.milestone-table tbody td {
+  padding: 1.2rem 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  vertical-align: middle;
+  position: relative;
+}
+
+.milestone-table tbody td:first-child {
+  font-weight: 600;
+  color: #667eea;
+}
+
+/* Status Badges */
+.status {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.status:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.status.pending {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  color: #d63031;
+}
+
+.status.in-progress {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  color: #fff;
+}
+
+.status.completed {
+  background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+  color: #fff;
+}
+
+/* Scrollbar Styles */
+.container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Empty State */
+.milestone-table tbody:empty::after {
+  content: 'No milestones found';
+  display: block;
+  padding: 3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 2rem;
+  }
+
+  .milestone-table thead tr th,
+  .milestone-table tbody td {
+    padding: 1rem 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .status {
+    min-width: 100px;
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .container h2 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .filter-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+    padding: 1.2rem;
+  }
+
+  .filter-box label {
+    font-size: 1rem;
+  }
+
+  /* Stack table on mobile */
+  .milestone-table {
+    border-radius: 10px;
+  }
+
+  .milestone-table thead {
+    display: none;
+  }
+
+  .milestone-table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .milestone-table tbody tr:hover {
+    transform: scale(1.02);
+  }
+
+  .milestone-table tbody td {
+    display: block;
+    text-align: right;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding-left: 45%;
+  }
+
+  .milestone-table tbody td:last-child {
+    border-bottom: none;
+  }
+
+  .milestone-table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: #667eea;
+    letter-spacing: 0.5px;
+  }
+
+  .milestone-table tbody td:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  }
+
+  .milestone-table tbody td:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .status {
+    display: inline-block;
+    min-width: auto;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .container h2 {
+    font-size: 1.6rem;
+  }
+
+  .milestone-table tbody td {
+    padding-left: 40%;
+    font-size: 0.9rem;
+  }
+}
+
+/* Button Container */
+td.btn {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Base Button Style */
+td.btn button,
+td.btn Button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* VIEW BUTTON */
+.view {
+  background: linear-gradient(90deg, #4e54c8, #8f94fb);
+}
+
+.view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(79, 84, 200, 0.35);
+}
+
+/* DELETE BUTTON */
+.del {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+}
+
+.del:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 65, 108, 0.35);
+}

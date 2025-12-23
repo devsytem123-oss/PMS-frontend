@@ -1,0 +1,186 @@
+/* ---------------- GLOBAL STYLING ---------------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ece9f1, #f5f7fa);
+  margin: 0;
+  padding: 20px;
+}
+
+/* Titles */
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+  color: #2d7df4;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0;
+  color: pink;
+}
+
+/* ---------------- TABLE WRAPPER ---------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: fadeIn 0.8s ease;
+}
+
+table th {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+table td {
+  padding: 14px;
+  font-size: 15px;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+  transition: background 0.2s ease;
+}
+
+tr:hover td {
+  background: rgba(220, 230, 255, 0.6);
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+button {
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* View Button */
+.view {
+  background: linear-gradient(45deg, #1e90ff, #0066cc);
+  color: white;
+}
+
+.view:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #1575df, #004c99);
+}
+
+/* Edit Button */
+.edit {
+  background: linear-gradient(45deg, #f7b731, #f39c12);
+  color: white;
+  margin: 0 5px;
+}
+
+.edit:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #e0a42a, #d48b0d);
+}
+
+/* Delete Button */
+.delete {
+  background: linear-gradient(45deg, #ff4757, #e84118);
+  color: white;
+}
+
+.delete:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #d63031, #b12008);
+}
+
+/* ---------------- EDIT USER FORM (PREMIUM LOOK) ---------------- */
+
+.edit-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 55%;
+  max-width: 600px;
+  padding: 25px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0px 5px 25px rgba(0,0,0,0.15);
+}
+
+
+/* Inputs */
+form input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #f9f9ff;
+  transition: 0.25s;
+}
+
+form input:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+  outline: none;
+}
+
+/* Update Button */
+.upd {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 14px;
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  margin-top: 10px;
+}
+
+.upd:hover {
+  transform: scale(1.03);
+  background: linear-gradient(45deg, #1c8d3b, #14966f);
+}
+
+/* Cancel Button */
+.can {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 14px;
+  background: linear-gradient(45deg, #6c757d, #495057);
+  color: white;
+  margin-top: 12px;
+}
+
+.can:hover {
+  transform: scale(1.03);
+  background: linear-gradient(45deg, #565d63, #383f43);
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.edit-h{
+    color: green;
+}

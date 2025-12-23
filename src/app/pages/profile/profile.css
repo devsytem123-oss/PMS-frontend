@@ -1,0 +1,220 @@
+/* ----------------------------------------------------
+   WRAPPER ANIMATION (soft fade-in + upward float)
+---------------------------------------------------- */
+.profile-wrapper {
+  max-width: 820px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  animation: fadeInUp 0.9s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------------------------------
+   PREMIUM CARD WITH NEON BORDER + FLOAT GLOW
+---------------------------------------------------- */
+.profile-card,
+.profile-wrapper form {
+  position: relative;
+  padding: 40px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+
+  /* Neon gradient border */
+  box-shadow:
+    0 0 25px rgba(0, 131, 255, 0.25),
+    0 10px 40px rgba(0,0,0,0.55),
+    inset 0 0 35px rgba(255,255,255,0.06);
+
+  overflow: hidden;
+  transition: 0.35s ease;
+}
+
+/* Gradient glowing outer border on hover */
+.profile-card:hover,
+.profile-wrapper form:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow:
+    0 0 35px rgba(0,150,255,0.45),
+    0 20px 50px rgba(0,0,0,0.6),
+    inset 0 0 55px rgba(255,255,255,0.12);
+}
+
+/* ----------------------------------------------------
+   SHIMMER LIGHT EFFECT
+---------------------------------------------------- */
+.profile-card::before,
+.profile-wrapper form::before {
+  content: "";
+  position: absolute;
+  top: -200%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  transform: rotate(20deg);
+  animation: shimmer 4s infinite linear;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) rotate(20deg); }
+  100% { transform: translateX(100%) rotate(20deg); }
+}
+
+/* ----------------------------------------------------
+   TITLE WITH NEON TEXT GLOW
+---------------------------------------------------- */
+.profile-card h2,
+.profile-wrapper form h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 25px;
+
+  background: linear-gradient(135deg, #9ad0ff, #ffffff, #8abaff);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 0 20px rgba(140,170,255,0.6);
+  letter-spacing: 1px;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 16px rgba(140,170,255,0.5); }
+  50% { text-shadow: 0 0 28px rgba(140,170,255,0.9); }
+  100% { text-shadow: 0 0 16px rgba(140,170,255,0.5); }
+}
+
+/* ----------------------------------------------------
+   PROFILE DATA ROWS + HOVER SLIDE
+---------------------------------------------------- */
+.profile-card p {
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  border-left: 4px solid #5dbbff;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #eaeaea;
+
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.profile-card p:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(10px);
+}
+
+/* ----------------------------------------------------
+   ULTRA PREMIUM INPUTS
+---------------------------------------------------- */
+.profile-wrapper input {
+  width: 100%;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 18px;
+  font-size: 16px;
+  color: #fff;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  transition: 0.3s ease;
+}
+
+.profile-wrapper input:focus {
+  border-color: #79b9ff;
+  box-shadow: 0 0 12px rgba(120,180,255,0.7);
+  background: rgba(255,255,255,0.14);
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+/* ----------------------------------------------------
+   ULTRA PREMIUM BUTTONS WITH RIPPLE EFFECT
+---------------------------------------------------- */
+button {
+  position: relative;
+  overflow: hidden;
+  padding: 14px 20px;
+  margin-top: 14px;
+  margin-right: 10px;
+
+  border-radius: 18px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+
+  background: linear-gradient(135deg, #4da3ff, #0066ff);
+  box-shadow: 0 6px 20px rgba(0,102,255,0.35);
+
+  transition: 0.25s;
+}
+
+/* Hover animation */
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,102,255,0.55);
+}
+
+/* Ripple effect */
+button::after {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,0.5);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.2);
+  pointer-events: none;
+}
+
+button:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% { width: 0; height: 0; opacity: 0.7; }
+  100% { width: 350px; height: 350px; opacity: 0; }
+}
+
+/* Premium Red Delete Button */
+button:nth-child(2) {
+  background: linear-gradient(135deg, #ff5353, #c80000);
+  box-shadow: 0 6px 20px rgba(255,35,35,0.35);
+}
+
+button:nth-child(2):hover {
+  box-shadow: 0 10px 30px rgba(255,0,0,0.55);
+}
+
+/* Create/Update Full Width Button */
+.profile-wrapper form button {
+  width: 100%;
+  background: linear-gradient(135deg, #00e0ff, #0076ff);
+  box-shadow: 0 8px 25px rgba(0,150,255,0.45);
+}
+
+.profile-wrapper form button:hover {
+  box-shadow: 0 12px 35px rgba(0,150,255,0.7);
+}

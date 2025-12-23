@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 style="color: green">All Projects</h2>
+
+  <div *ngFor="let p of projects | async" class="project-card">
+    <p>
+      <strong>{{ p.name }} </strong>
+    </p>
+    <p>{{ p.description }}</p>
+
+     <div class="project-actions">
+      <button class="btn-view" [routerLink]="['/projects', p._id]">View</button>
+      <button class="btn-edit" *ngIf="(Role | async)==='Admin'"  [routerLink]="['/project', p._id]">Edit</button>
+      <button class="btn-delete" *ngIf="(Role | async)==='Admin'  && p._id" (click)="openDeleteModel(p._id)">Delete</button>
+    </div>
+  </div>
+
+  <hr/>
+  
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal" [class.show]="showDeleteModel">
+  <div class="modal-content">
+    <h3>Confirm Delete</h3>
+    <p>Are you sure you want to delete this project?</p>
+
+    <button (click)="deleteProject()">Yes, Delete</button>
+    <button (click)="showDeleteModel = false">Cancel</button>
+  </div>
+</div>
+

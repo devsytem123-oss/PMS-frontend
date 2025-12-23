@@ -1,0 +1,16 @@
+<div class="container">
+  <h2 style="color: green">All Projects</h2>
+
+  <div *ngFor="let p of (projects | async)" class="project-card">
+    <p class="name">
+      <strong>{{ p.name }} </strong>
+    </p>
+    <p class="desc">{{ p.description }}</p>
+
+     <div class="project-actions">
+      <button class="btn-view" [routerLink]="['/progress', p._id]">View Progress</button>
+      
+    </div>
+  </div>
+
+  

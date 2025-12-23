@@ -1,0 +1,16 @@
+<div class="container" *ngIf="user$ | async as user">
+    <h2>User Details</h2>
+
+<div *ngIf="user" class="child">
+  <p><b>Name:</b> {{ user.name }}</p>
+  <p><b>Email:</b> {{ user.email }}</p>
+  <p><b>Role:</b> {{ user.role }}</p>
+
+  <p><b>Phone:</b> {{ user?.profile?.phone }}</p>
+  <p><b>Address:</b> {{ user?.profile?.address }}</p>
+  <p><b>Skills:</b> {{ user?.profile?.skills }}</p>
+
+  <button routerLink="/users">Back to Users</button>
+</div>
+
+</div>

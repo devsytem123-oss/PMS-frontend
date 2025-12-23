@@ -1,0 +1,45 @@
+<div class="center-box">
+   <h2>{{ isEdit ? 'Edit Project' : 'Create New Project' }}</h2>
+
+  <form [formGroup]="projectForm" >
+
+    <!-- PROJECT NAME -->
+    <label>Project Name</label>
+    <input type="text" formControlName="name" placeholder="Enter project name" />
+
+    <!-- DESCRIPTION -->
+    <label>Description</label>
+    <textarea formControlName="description" placeholder="Enter description"></textarea>
+
+    <!-- ASSIGNED TO -->
+    <label>Assign To (Project Manager)</label>
+    <select formControlName="assignedTo">
+      <option value="">Select Manager</option>
+      @if(isEdit){
+        <option *ngFor="let user of managers | async" [value]="user.name">
+        {{ user.name }}
+      </option>
+    }
+      @else{
+        <option *ngFor="let user of managers | async" [value]="user._id">
+        {{ user.name }}
+      </option>
+      }
+      
+    </select>
+
+    <!-- END DATE -->
+     <label>Start Date</label>
+    <input type="date" formControlName="startDate" />
+    <label>End Date</label>
+    <input type="date" formControlName="endDate" />
+
+    <!-- SUBMIT -->
+   @if(isEdit){
+ <button type="button" (click)="editProject()">Update Project</button>
+   }
+   @else{
+     <button type="button" (click)="createProject()">Create Project</button>
+   }
+  </form>
+</div>

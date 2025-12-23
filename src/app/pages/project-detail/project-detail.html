@@ -1,0 +1,73 @@
+<div *ngIf="project$ | async as project  " class="project-card" >
+  <h2>Project Details</h2>
+
+  <p><strong>Name:</strong> {{ project .name }}</p>
+  <p><strong>Description:</strong> {{ project.description }}</p>
+
+  <p><strong>Status:</strong> {{ project.status }}</p>
+  <p><strong>Start Date:</strong> {{ project.startDate | date }}</p>
+  <p><strong>End Date:</strong> {{ project.endDate | date }}</p>
+
+  <!-- CREATE MILESTONE BUTTON -->
+  <button class="create-btn" (click)="setMile()" *ngIf="(Role | async ) ==='Project Manager'">+ Create Milestone</button>
+
+  <!-- Milestones -->
+  <div *ngIf="milestone$ | async as milestones">
+    <div *ngIf="(milestones.length ) > 0">
+    <h3>Milestones</h3>
+
+    <div *ngFor="let m of milestones; let i = index" class="milestone-card">
+      <p>
+        <strong>{{ i + 1 }}. {{ m.name }}</strong>
+      </p>
+      <p><strong>Description:</strong> {{ m.description }}</p>
+      <p><strong>Status:</strong> {{ m.status }}</p>
+      <p><strong>Due Date:</strong> {{ m.dueDate | date }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!milestones || milestones.length === 0" class="no-milestone">
+    No milestones added yet.
+  </div>
+  </div>
+
+  <br />
+
+  <!-- Buttons -->
+  <button class="profile-btn" (click)="viewProfile(project.createdBy._id)">
+    Created By: {{ project ?.createdBy?.name }}
+  </button>
+
+  <button class="profile-btn" (click)="viewProfile(project.assignedTo._id)">
+    Assigned To: {{ project?.assignedTo?.name }}
+  </button>
+</div>
+
+<div *ngIf="mile" class="container" #mileFormSection>
+  <h2>Create Milestone</h2>
+
+  <form [formGroup]="mileForm">
+    <label>Name:</label>
+    <input type="text" required formControlName="name" placeholder="Enter milestone name" />
+    <br /><br />
+
+    <label>Description:</label>
+    <textarea required formControlName="description" placeholder="Enter milestone description"></textarea>
+    <br /><br />
+
+    <label>Due Date:</label>
+    <input type="date" required formControlName="dueDate" />
+    <br /><br />
+
+    <label>Status:</label>
+    <select formControlName="status" required>
+      <option value="">Select</option>
+      <option value="pending">Pending</option>
+      <option value="in-progress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+    <br /><br />
+
+    <button type="button" (click)="createMilestone()">Create Milestone</button>
+  </form>
+</div>

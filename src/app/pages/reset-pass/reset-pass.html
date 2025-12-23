@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="card reset-card">
+
+    <h2 class="title">Reset Password</h2>
+    <p class="subtitle">Create a new password for your account.</p>
+
+    <form [formGroup]="resetForm"
+          (ngSubmit)="resetPassword()"
+          class="reset-form">
+
+      <!-- Email -->
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+          class="form-input"
+        />
+        <small class="error"
+          *ngIf="resetForm.get('email')?.touched && resetForm.get('email')?.invalid">
+          Valid email is required
+        </small>
+      </div>
+
+     
+
+      <!-- New Password -->
+      <div class="form-group">
+        <label class="form-label">New Password</label>
+        <input
+          type="password"
+          placeholder="Enter new password"
+          formControlName="password"
+          class="form-input"
+        />
+        <small class="error"
+          *ngIf="resetForm.get('password')?.touched && resetForm.get('password')?.invalid">
+          Minimum 6 characters required
+        </small>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          placeholder="Confirm new password"
+          formControlName="confirmPassword"
+          class="form-input"
+        />
+        <small class="error"
+          *ngIf="resetForm.hasError('passwordMismatch') && resetForm.get('confirmPassword')?.touched">
+          Passwords do not match
+        </small>
+      </div>
+
+       
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="resetForm.invalid">
+        Reset Password
+      </button>
+
+    </form>
+
+  </div>
+</div>
