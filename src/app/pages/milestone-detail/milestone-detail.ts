@@ -70,5 +70,6 @@ export class MilestoneDetail {
     this.store.dispatch(createTaskAction.createTask({ payload: value }));
     this.getMileStone();
     this.task = false;
+    this.taskForm.reset();
   }
 }

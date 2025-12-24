@@ -69,6 +69,7 @@ export class ProjectDetail {
     alert('Milestone Created');
     this.mile = false;
     this.openProject();
+    this.mileForm.reset();  
   }
 
   ngOnInit() {
