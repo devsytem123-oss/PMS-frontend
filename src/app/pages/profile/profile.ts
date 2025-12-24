@@ -8,7 +8,7 @@ import { ProfileM } from '../../models/profile';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { profileSelecter } from '../../selectors/profile.selecter';
-import { profileAction } from '../../store/actions/profile.action';
+import { addProfileAction, deleteProfileAction, profileAction, updateProfileAction } from '../../store/actions/profile.action';
 @Component({
   selector: 'app-profile',
   imports: [NgIf, ReactiveFormsModule, CommonModule],
@@ -55,24 +55,19 @@ export class Profile {
   addProfile() {
     console.log('p', this.profileForm.value);
     let values: ProfileM = this.profileForm.value;
-    this.profileService.creatProfile(values).subscribe((res) => {
-      alert('profile created');
-      this.loadProfile();
-    });
+    this.store.dispatch(addProfileAction.addProfile({payload:values}))
+    alert('profile created');
+    this.loadProfile();
   }
   update() {
     let values: ProfileM = this.profileForm.value;
-    this.profileService.updateProfile(values).subscribe((res) => {
-      alert('profile updated');
-      this.editMode = false;
-      this.loadProfile();
-      this.cdr.detectChanges()
-    });
+    this.store.dispatch(updateProfileAction.updateProfile({payload:values}))
+    this.editMode = false;
+    this.loadProfile();
   }
   deleteProfile() {
-    this.profileService.deleteProfile().subscribe((res) => {
-      alert('profile deleted successfully');
+    this.store.dispatch(deleteProfileAction.deleteProfile())
+    alert('profile deleted successfully');
       this.router.navigateByUrl('/');
-    });
   }
 }

@@ -1,6 +1,6 @@
 <div class="profile-wrapper">
 
-  <div *ngIf="profileData$" class="profile-card">
+  <div *ngIf="profileData$ | async" class="profile-card">
     <h2>User Profile</h2>
 
     <p><strong>Name:</strong> {{ (profileData$ | async)?.userId?.name }}</p>
@@ -14,15 +14,15 @@
     <button (click)="deleteProfile()">Delete Profile</button>
   </div>
 
-  <div *ngIf="!profileData$ || editMode">
+  <div *ngIf="!(profileData$ | async) || editMode">
     <form [formGroup]="profileForm">
-      <h2>{{ profileData$ ? 'Update Profile' : 'Create Profile' }}</h2>
+      <h2>{{ (profileData$ | async) ? 'Update Profile' : 'Create Profile' }}</h2>
 
       <input type="text" placeholder="Phone"  formControlName="phone" name="phone" />
       <input type="text" placeholder="Address" formControlName="address"  name="address" />
       <input type="text" placeholder="Skills" formControlName="skills"  name="skills" />
 
-    @if (profileData$) {
+    @if ((profileData$ | async)) {
       <button type="button" (click)="update()">Update</button>
        <button type="button" (click)="updateStatus()">close</button>
     } @else {

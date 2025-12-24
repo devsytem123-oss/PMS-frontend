@@ -13,7 +13,7 @@ export class ProfileService {
    return this.http.get<ProfileM>(`${environment.apiUrl}profile`,{withCredentials:true})
   }
 
-  creatProfile(data:ProfileM){
+  creatProfile(data:ProfileM):Observable<ProfileM>{
     console.log('d',data);
     return this.http.post<ProfileM>(`${environment.apiUrl}profile`,data,{withCredentials:true})
   }
