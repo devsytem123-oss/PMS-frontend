@@ -102,7 +102,7 @@ export class Auth {
   }
 
 
-  forgetPassword(data:any){
+  forgetPassword(data:{email:string}){
     console.log('d',data);
     
     return this.http.post(`${environment.apiUrl}forgotPassword`,data,{withCredentials:true})
