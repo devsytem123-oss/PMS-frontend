@@ -1,4 +1,4 @@
 export const environment = {
     production:true,
-    apiUrl:'https://pms-backend-sand.vercel.app/'
+    apiUrl:'https://backendpms-a929.onrender.com/'
 };
